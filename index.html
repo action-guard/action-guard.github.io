@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Action Guard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <img src="./assets/project_banner.gif" alt="Project banner" class="banner lightbox" data-full="./assets/project_banner.gif">
+      <h1>Action Guard — Safer Autonomous AI Agents</h1>
+      <p class="lead">This work makes AI agents safer by classifying and blocking harmful actions before they execute. If you value trustworthy AI, please consider supporting and sharing this project.</p>
+      <p class="ctas">
+        <a class="btn primary" href="https://github.com/Pro-GenAI/Agent-Action-Guard" target="_blank">Star on GitHub</a>
+        <a class="btn" href="https://www.researchgate.net/publication/396525269_MCP_Agent_Action_Guard_Safe_AI_Agents_through_Action_Classifier" target="_blank">Read the Paper</a>
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="problem">
+      <h2>The problem we solve</h2>
+      <p>The rapid rise of autonomous AI agents and tool-enabled LLMs increases the chance they propose or execute harmful, unethical, or unsafe actions. Causes include prompt manipulation, model hallucination, overconfidence, and misleading MCP tool descriptions. Without runtime screening, agents can take harmful steps before humans notice.</p>
+      Action Guard addresses this by classifying proposed agent actions in real-time and blocking ones flagged as harmful — reducing risk while preserving useful automation.
+    </section>
+
+    <section class="features">
+      <h2>Why this matters</h2>
+      <ul>
+        <li><strong>Prevents harm:</strong> Screens agent tool-calls to stop unsafe or unethical actions.</li>
+        <li><strong>Lightweight:</strong> A compact classifier designed for realtime use in agent loops.</li>
+        <li><strong>Reproducible:</strong> Dataset, demo, and code are public so the community can build on it.</li>
+      </ul>
+    </section>
+
+    <section class="details">
+      <h2>Project details</h2>
+      <p><strong>HarmActions dataset:</strong> A structured dataset of safety-labeled agent actions used to train the classifier and to evaluate agent behaviour (HarmActEval).</p>
+      <p><strong>Action Classifier:</strong> A lightweight neural model trained on HarmActions to label proposed actions as safe, harmful, or unethical — optimized for realtime deployment inside agent loops.</p>
+      <p><strong>MCP integration:</strong> Action Guard integrates with MCP workflows via a guarded proxy and sample MCP server, allowing live screening of tool-calls without modifying existing agents.</p>
+      <p><strong>Key features:</strong> automatic action classification, blocking of harmful calls, detailed classification output, and easy integration (importable API: `is_action_harmful`).</p>
+      <p class="small">See the full project README for usage, Docker Compose demo, and citation details.</p>
+    </section>
+
+    <section class="demo">
+      <h2>Live demo & workflow</h2>
+      <div class="media-grid">
+          <figure>
+            <img src="./assets/demo.gif" alt="Demo of Action Guard" class="lightbox" data-full="./assets/demo.gif">
+            <figcaption>Interactive demo showcasing guarded agent interaction.</figcaption>
+          </figure>
+          <figure>
+            <img src="./assets/Workflow.gif" alt="Workflow diagram" class="lightbox" data-full="./assets/Workflow.gif">
+            <figcaption>How Action Guard screens actions in an agent loop.</figcaption>
+          </figure>
+      </div>
+    </section>
+
+    <section class="support">
+      <h2>How you can help</h2>
+      <ol>
+        <li>Star and fork the repo to boost visibility.</li>
+        <li>Share the demo with peers and on social media.</li>
+        <li>Try the code, report issues, or contribute improvements.</li>
+      </ol>
+      <p class="small">Citations, badges, and links live in the repository — contributions help the research and improve safety across AI systems.</p>
+    </section>
+    
+      <section class="modules">
+        <h2>Modules & components</h2>
+        <ul>
+          <li><strong>HarmActions dataset:</strong> Labeled agent-action dataset used for training and evaluation (HarmActEval benchmark).</li>
+          <li><strong>Action Classifier:</strong> Lightweight neural model that tags proposed agent actions as safe, harmful, or unethical.</li>
+          <li><strong>MCP proxy / integrations:</strong> Guarded proxy and sample MCP server for live screening of tool-calls (see `agent_action_guard/scripts/sample_mcp_server.py`).</li>
+          <li><strong>API & demo:</strong> Backend and Gradio chat demo (`agent_action_guard/scripts/api_server.py`, `agent_action_guard/scripts/chat_server.py`).</li>
+          <li><strong>Utilities:</strong> Importable helper `is_action_harmful(action_dict)` and `HarmfulActionException` for easy integration into other projects.</li>
+          <li><strong>Deployment:</strong> Docker Compose setup and example `.env` for running the full demo stack.</li>
+        </ul>
+      </section>
+  </main>
+
+  <!-- Lightbox modal -->
+  <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+    <div class="lightbox-content" role="dialog" aria-modal="true">
+      <button class="lightbox-close" aria-label="Close">×</button>
+      <img id="lightbox-image" src="" alt="" />
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function openLightbox(src, caption){
+        var lb = document.getElementById('lightbox');
+        var img = document.getElementById('lightbox-image');
+        var cap = document.getElementById('lightbox-caption');
+        img.src = src;
+        img.alt = caption || '';
+        cap.textContent = caption || '';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox(){
+        var lb = document.getElementById('lightbox');
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        document.getElementById('lightbox-image').src = '';
+        document.body.style.overflow = '';
+      }
+      document.addEventListener('click', function(e){
+        var t = e.target;
+        if(t.classList && t.classList.contains('lightbox')){
+          var full = t.dataset.full || t.src;
+          openLightbox(full, t.alt || '');
+        }
+        if(t.classList && t.classList.contains('lightbox-close')){
+          closeLightbox();
+        }
+      }, false);
+      document.getElementById('lightbox').addEventListener('click', function(e){
+        if(e.target && e.target.id === 'lightbox') closeLightbox();
+      });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+    })();
+  </script>
+
+  <footer class="site-footer">
+    <p>Built by <strong>Praneeth Vadlapati</strong>. Demo and dataset available on the project repository.</p>
+    <p><a href="https://huggingface.co/datasets/prane-eth/HarmActions" target="_blank">HarmActions Dataset</a> • <a href="https://www.youtube.com/watch?v=7pNYXv3x7MA" target="_blank">Video Demo</a></p>
+  </footer>
+</body>
+</html>

@@ -1,2 +1,7 @@
 # action-guard.github.io
-GitHub page of Agent Action Guard project
+Web page code of Agent Action Guard project.
+
+Link: https://action-guard.github.io/
+
+Main repository link:
+https://github.com/Pro-GenAI/Agent-Action-Guard
