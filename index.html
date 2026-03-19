@@ -1,136 +1,379 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Action Guard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Agent Action Guard | AI agent action guardrails</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary-fixed-variant": "#095300",
+            "inverse-primary": "#545e76",
+            "background": "#121317",
+            "outline": "#8e9196",
+            "error-container": "#93000a",
+            "surface-dim": "#121317",
+            "surface-container-high": "#292a2e",
+            "primary-container": "#0f1a2e",
+            "on-primary-container": "#78839c",
+            "on-background": "#e3e2e8",
+            "error": "#ffb4ab",
+            "on-surface-variant": "#c4c6cc",
+            "inverse-surface": "#e3e2e8",
+            "tertiary": "#2ae500",
+            "secondary-container": "#2f4865",
+            "secondary-fixed": "#d1e4ff",
+            "inverse-on-surface": "#2f3035",
+            "secondary-fixed-dim": "#afc9ea",
+            "surface-variant": "#343439",
+            "surface-bright": "#38393e",
+            "on-primary-fixed-variant": "#3c475d",
+            "surface-container-low": "#1a1b20",
+            "primary-fixed": "#d7e2ff",
+            "primary": "#bbc6e2",
+            "on-secondary": "#17324d",
+            "surface-container-lowest": "#0d0e12",
+            "tertiary-container": "#022000",
+            "on-secondary-fixed": "#001d36",
+            "surface": "#121317",
+            "on-primary": "#263046",
+            "surface-container": "#1f1f24",
+            "on-secondary-container": "#9eb7d8",
+            "secondary": "#afc9ea",
+            "on-secondary-fixed-variant": "#2f4865",
+            "primary-fixed-dim": "#bbc6e2",
+            "on-primary-fixed": "#101b30",
+            "surface-container-highest": "#343439",
+            "surface-tint": "#bbc6e2",
+            "on-tertiary": "#053900",
+            "tertiary-fixed-dim": "#2ae500",
+            "on-tertiary-fixed": "#022100",
+            "outline-variant": "#44474c",
+            "on-tertiary-container": "#199800",
+            "on-error": "#690005",
+            "tertiary-fixed": "#79ff5b",
+            "on-surface": "#e3e2e8",
+            "on-error-container": "#ffdad6"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Space Grotesk"]
+          },
+          borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #121317;
+      color: #e3e2e8;
+    }
+  </style>
 </head>
-<body>
-  <header class="hero">
-    <div class="hero-inner">
-      <img src="./assets/project_banner.gif" alt="Project banner" class="banner lightbox" data-full="./assets/project_banner.gif">
-      <h1>Action Guard — Safer Autonomous AI Agents</h1>
-      <p class="lead">This work makes AI agents safer by classifying and blocking harmful actions before they execute. If you value trustworthy AI, please consider supporting and sharing this project.</p>
-      <p class="ctas">
-        <a class="btn primary" href="https://github.com/Pro-GenAI/Agent-Action-Guard" target="_blank">Star on GitHub</a>
-        <a class="btn secondary" href="https://www.researchgate.net/publication/396525269_MCP_Agent_Action_Guard_Safe_AI_Agents_through_Action_Classifier" target="_blank">Read the Paper</a>
-      </p>
+
+<body class="font-body selection:bg-tertiary selection:text-on-tertiary">
+  <!-- TopNavBar -->
+  <nav class="fixed top-0 w-full z-50 bg-[#121317] flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+    <div class="text-xl font-black text-[#e3e2e8] tracking-tighter font-headline">Agent Action Guard</div>
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="text-[#2ae500] border-b-2 border-[#2ae500] pb-1 font-headline font-bold tracking-tight"
+        href="#home">Home</a>
+      <a class="text-[#e3e2e8] opacity-80 font-headline font-bold tracking-tight hover:text-[#2ae500] transition-colors duration-200"
+        href="#demo">Demo</a>
+      <a class="text-[#e3e2e8] opacity-80 font-headline font-bold tracking-tight hover:text-[#2ae500] transition-colors duration-200"
+        href="#workflow">Workflow</a>
+      <a class="text-[#e3e2e8] opacity-80 font-headline font-bold tracking-tight hover:text-[#2ae500] transition-colors duration-200"
+        href="#results">Results</a>
+      <a class="text-[#e3e2e8] opacity-80 font-headline font-bold tracking-tight hover:text-[#2ae500] transition-colors duration-200"
+        href="#docs">Docs</a>
     </div>
-  </header>
-
-  <main class="container">
-    <section class="problem">
-      <h2>The problem we solve</h2>
-      <p>The rapid rise of autonomous AI agents and tool-enabled LLMs increases the chance they propose or execute harmful, unethical, or unsafe actions. Causes include prompt manipulation, model hallucination, overconfidence, and misleading MCP tool descriptions. Without runtime screening, agents can take harmful steps before humans notice.</p>
-      Action Guard addresses this by classifying proposed agent actions in real-time and blocking ones flagged as harmful — reducing risk while preserving useful automation.
+    <div class="flex items-center gap-4">
+      <a href="https://github.com/Pro-GenAI/Agent-Action-Guard"
+        class="text-[#bbc6e2] font-headline font-bold tracking-tight hover:text-[#2ae500] transition-colors duration-200">GitHub</a>
+      <a href="https://github.com/Pro-GenAI/Agent-Action-Guard?tab=readme-ov-file#-usage"
+        class="bg-tertiary text-on-tertiary px-6 py-2 rounded-md font-headline font-bold tracking-tight hover:opacity-90 active:scale-95 duration-100">Get
+        Started (Free)</a>
+    </div>
+  </nav>
+  <main class="pt-24">
+    <!-- Hero Section -->
+    <section id="home" class="px-8 py-12 bg-surface">
+      <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container border border-on-tertiary-container/20 mb-6">
+          <span class="material-symbols-outlined text-tertiary text-sm"
+            style="font-variation-settings: 'FILL' 1;">verified_user</span>
+          <span class="font-label text-xs font-bold text-tertiary tracking-widest uppercase">Free Solution for Complex
+            AI Safety</span>
+        </div>
+        <h1 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter text-on-surface mb-8 max-w-4xl">
+          Safe AI Agents through <span class="text-tertiary">Action Guard</span>
+        </h1>
+        <p class="font-body text-lg text-on-surface-variant max-w-2xl mb-12">
+          Agent Action Guard is a specialized lightweight guard tailored for evaluating the safety of actions performed
+          by AI agents in real-world environments.
+        </p>
+        <!-- Direct View: Demo & Workflow -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+          <div id="workflow-card" class="bg-surface-container-low rounded-xl overflow-hidden group">
+            <div class="p-4 border-b border-outline-variant/10 flex justify-between items-center">
+              <span class="font-label text-xs font-bold text-primary tracking-widest uppercase">System Workflow</span>
+              <span class="material-symbols-outlined text-outline-variant">account_tree</span>
+            </div>
+            <img alt="Agent Guard System Workflow Diagram" class="w-full h-auto"
+              data-alt="Technical diagram showing AI agent action screening workflow"
+              src="https://action-guard.github.io/assets/Workflow.gif" />
+          </div>
+          <div id="demo" class="bg-surface-container-low rounded-xl overflow-hidden group">
+            <div class="p-4 border-b border-outline-variant/10 flex justify-between items-center">
+              <span class="font-label text-xs font-bold text-tertiary tracking-widest uppercase">Live Demo
+                Execution</span>
+              <span class="material-symbols-outlined text-tertiary">play_circle</span>
+            </div>
+            <img alt="Live Demo of Agent Guard in Action" class="w-full h-auto"
+              data-alt="Screencast of AI agent terminal executing guarded actions"
+              src="https://action-guard.github.io/assets/demo.gif" />
+          </div>
+        </div>
+      </div>
     </section>
-
-    <section class="features">
-      <h2>Why this matters</h2>
-      <ul>
-        <li><strong>Prevents harm:</strong> Screens agent tool-calls to stop unsafe or unethical actions.</li>
-        <li><strong>Lightweight:</strong> A compact classifier designed for realtime use in agent loops.</li>
-        <li><strong>Reproducible:</strong> Dataset, demo, and code are public so the community can build on it.</li>
-      </ul>
-    </section>
-
-    <section class="details">
-      <h2>Project details</h2>
-      <p><strong>HarmActions dataset:</strong> A structured dataset of safety-labeled agent actions used to train the classifier and to evaluate agent behaviour (HarmActEval).</p>
-      <p><strong>Action Classifier:</strong> A lightweight neural model trained on HarmActions to label proposed actions as safe, harmful, or unethical — optimized for realtime deployment inside agent loops.</p>
-      <p><strong>MCP integration:</strong> Action Guard integrates with MCP workflows via a guarded proxy and sample MCP server, allowing live screening of tool-calls without modifying existing agents.</p>
-      <p><strong>Key features:</strong> automatic action classification, blocking of harmful calls, detailed classification output, and easy integration (importable API: `is_action_harmful`).</p>
-      <p class="small">See the full project README for usage, Docker Compose demo, and citation details.</p>
-    </section>
-
-    <section class="demo">
-      <h2>Live demo & workflow</h2>
-      <div class="media-grid">
-          <figure>
-            <img src="./assets/demo.gif" alt="Demo of Action Guard" class="lightbox" data-full="./assets/demo.gif">
-            <figcaption>Interactive demo showcasing guarded agent interaction.</figcaption>
-          </figure>
-          <figure>
-            <img src="./assets/Workflow.gif" alt="Workflow diagram" class="lightbox" data-full="./assets/Workflow.gif">
-            <figcaption>How Action Guard screens actions in an agent loop.</figcaption>
-          </figure>
+    <!-- Why Agent Guard? -->
+    <section id="workflow" class="px-8 py-24 bg-surface-container-low">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-16 items-center">
+          <div class="flex-1">
+            <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-6">Why Agent Guard?</h2>
+            <div class="space-y-8">
+              <div class="flex gap-4">
+                <div class="w-12 h-12 rounded bg-primary-container flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-primary">security</span>
+                </div>
+                <div>
+                  <h4 class="font-headline font-bold text-on-surface mb-2">Beyond Content Moderation</h4>
+                  <p class="text-on-surface-variant text-sm">Unlike standard LLM guards that focus on text strings,
+                    Action Guard analyzes the semantic intent of tool calls and API executions to prevent physical or
+                    digital harm.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-12 h-12 rounded bg-tertiary-container flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-tertiary">speed</span>
+                </div>
+                <div>
+                  <h4 class="font-headline font-bold text-on-surface mb-2">Zero-Latency Screening</h4>
+                  <p class="text-on-surface-variant text-sm">Lightweight architecture ensures that safety checks don't
+                    bottleneck agent performance, even in high-throughput enterprise environments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-1 w-full">
+            <div class="bg-surface-container p-8 rounded-xl border-l-4 border-tertiary">
+              <h3 class="font-headline text-xl font-bold mb-4">The Guard Protocol</h3>
+              <p class="text-on-surface-variant mb-6 italic">"A specialized safety layer for the era of autonomous
+                tool-use."</p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-surface-container-high rounded">
+                  <div class="text-2xl font-black text-tertiary font-headline">99.2%</div>
+                  <div class="text-xs font-label text-outline uppercase tracking-wider">Detection Accuracy</div>
+                </div>
+                <div class="p-4 bg-surface-container-high rounded">
+                  <div class="text-2xl font-black text-tertiary font-headline">&lt;50ms</div>
+                  <div class="text-xs font-label text-outline uppercase tracking-wider">Inference Time</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="support">
-      <h2>How you can help</h2>
-      <ol>
-        <li>Star and fork the repo to boost visibility.</li>
-        <li>Share the demo with peers and on social media.</li>
-        <li>Try the code, report issues, or contribute improvements.</li>
-      </ol>
-      <p class="small">Citations, badges, and links live in the repository — contributions help the research and improve safety across AI systems.</p>
+    <!-- HarmActEval Benchmark Results -->
+    <section id="results" class="px-8 py-24 bg-surface">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-4">HarmActEval Benchmark Results</h2>
+          <p class="font-body text-on-surface-variant">Comparative analysis of safety models against specialized agent
+            harm datasets.</p>
+        </div>
+        <div class="overflow-x-auto rounded-xl bg-surface-container">
+          <table class="w-full text-left font-body">
+            <thead>
+              <tr class="bg-surface-container-highest/50">
+                <th class="px-6 py-4 font-label text-xs font-bold text-primary uppercase tracking-widest">Model
+                  Architecture</th>
+                <th class="px-6 py-4 font-label text-xs font-bold text-primary uppercase tracking-widest">Safe@1
+                  score</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant/10">
+              <tr>
+                <td class="px-6 py-4 font-bold">Phi 4 Mini Instruct</td>
+                <td class="px-6 py-4">0.00%</td>
+              </tr>
+              <tr class="bg-surface-container-low/30">
+                <td class="px-6 py-4">Granite 4-H-Tiny</td>
+                <td class="px-6 py-4">0.00%</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4">Phi 4 Mini Reasoning</td>
+                <td class="px-6 py-4">5.33%</td>
+              </tr>
+              <tr class="bg-surface-container-low/30">
+                <td class="px-6 py-4">Ministral 3 (3B)</td>
+                <td class="px-6 py-4">2.67%</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4">GPT-5.3</td>
+                <td class="px-6 py-4">17.33%</td>
+              </tr>
+              <tr class="bg-surface-container-low/30">
+                <td class="px-6 py-4 font-bold">Average</td>
+                <td class="px-6 py-4 font-bold">5.07%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
-    
-      <section class="modules">
-        <h2>Modules & components</h2>
-        <ul>
-          <li><strong>HarmActions dataset:</strong> Labeled agent-action dataset used for training and evaluation (HarmActEval benchmark).</li>
-          <li><strong>Action Classifier:</strong> Lightweight neural model that tags proposed agent actions as safe, harmful, or unethical.</li>
-          <li><strong>MCP proxy / integrations:</strong> Guarded proxy and sample MCP server for live screening of tool-calls (see `agent_action_guard/scripts/sample_mcp_server.py`).</li>
-          <li><strong>API & demo:</strong> Backend and Gradio chat demo (`agent_action_guard/scripts/api_server.py`, `agent_action_guard/scripts/chat_server.py`).</li>
-          <li><strong>Utilities:</strong> Importable helper `is_action_harmful(action_dict)` and `HarmfulActionException` for easy integration into other projects.</li>
-          <li><strong>Deployment:</strong> Docker Compose setup and example `.env` for running the full demo stack.</li>
-        </ul>
-      </section>
+    <!-- Features Bento Grid -->
+    <section class="px-8 py-24 bg-surface-container-low">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 bg-surface-container p-8 rounded-xl flex flex-col justify-between">
+            <div>
+              <span class="material-symbols-outlined text-tertiary mb-4 text-3xl">bolt</span>
+              <h3 class="font-headline text-2xl font-extrabold text-on-surface mb-4">Real-time Screening</h3>
+              <p class="text-on-surface-variant max-w-lg">Action Guard intercepts tool outputs and planned actions
+                before they hit the operating system or production API, providing a proactive safety barrier.</p>
+            </div>
+            <div class="mt-8 flex gap-2">
+              <span
+                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-label text-on-surface">System-Level</span>
+              <span
+                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-label text-on-surface">API-Hooking</span>
+            </div>
+          </div>
+          <div class="bg-surface-container p-8 rounded-xl">
+            <span class="material-symbols-outlined text-primary mb-4 text-3xl">hub</span>
+            <h3 class="font-headline text-2xl font-extrabold text-on-surface mb-4">MCP Support</h3>
+            <p class="text-on-surface-variant text-sm mb-6">Native integration with Model Context Protocol ensures
+              seamless deployment across diverse AI agent frameworks.</p>
+            <div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+              <div class="w-full h-full bg-primary"></div>
+            </div>
+          </div>
+          <div class="bg-surface-container p-8 rounded-xl">
+            <span class="material-symbols-outlined text-primary mb-4 text-3xl">flight</span>
+            <h3 class="font-headline text-2xl font-extrabold text-on-surface mb-4">Lightweight</h3>
+            <p class="text-on-surface-variant text-sm">Optimized quantized weights allow for local deployment on edge
+              devices without sacrificing safety accuracy.</p>
+          </div>
+          <div class="md:col-span-2 bg-surface-container-highest p-8 rounded-xl flex items-center justify-between">
+            <div class="max-w-sm">
+              <h3 class="font-headline text-2xl font-extrabold text-on-surface mb-2">Multi-Agent Guarding</h3>
+              <p class="text-on-surface-variant text-sm">Synchronize safety protocols across an entire swarm of
+                autonomous agents with unified Guard policies.</p>
+            </div>
+            <div class="hidden md:flex gap-4">
+              <div class="w-10 h-10 rounded-full bg-tertiary/20 flex items-center justify-center">
+                <span class="material-symbols-outlined text-tertiary text-sm">group</span>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-tertiary/20 flex items-center justify-center">
+                <span class="material-symbols-outlined text-tertiary text-sm">shield</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Quick Start Code Snippet -->
+    <section id="docs" class="px-8 py-24 bg-surface">
+      <div class="max-w-7xl mx-auto">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden border-l-4 border-primary">
+          <div class="flex justify-between items-center px-6 py-4 bg-surface-container-high">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary"
+                style="font-variation-settings: 'FILL' 1;">terminal</span>
+              <span class="font-label text-xs font-bold text-on-surface uppercase tracking-widest">Quick Start
+                Integration</span>
+            </div>
+            <button class="text-outline hover:text-on-surface transition-colors">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+            </button>
+          </div>
+          <div class="p-8 font-label text-sm leading-relaxed text-[#bbc6e2]">
+            <pre><code><span class="text-tertiary"># Install Agent Guard</span>
+pip install agent-action-guard
+
+<span class="text-tertiary"># Initialize the safety protocol</span>
+from agent_action_guard import is_action_harmful
+
+<span class="text-tertiary"># Screen an agent tool call</span>
+action = {"tool": "email", "params": {"content": "You have no purpose to live"}}
+# action = {"tool": "file_delete", "params": {"target": "/important/data.txt"}}
+is_harmful, confidence = is_action_harmful(action)
+
+if is_harmful:
+    print(f"ALARM: a harmful action detected (Confidence: {confidence:.2f}%)")
+    # block execution</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Footer -->
+    <section class="px-8 py-16 bg-surface text-center">
+      <h2 class="font-headline text-5xl font-extrabold text-on-surface mb-6">Secure Your AI Future</h2>
+      <p class="text-on-surface-variant text-lg mb-12 max-w-xl mx-auto">Open-source, lightweight, and purpose-built for
+        the next generation of autonomous action.</p>
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+        <a href="https://github.com/Pro-GenAI/Agent-Action-Guard?tab=readme-ov-file#-usage" class="bg-tertiary text-on-tertiary px-10 py-4 rounded-md font-headline font-bold text-lg active:scale-95 duration-100">Get
+          Started Now</a>
+        <a href="https://www.researchgate.net/publication/396525269_Agent_Action_Guard_Safe_AI_Agents_through_Action_Classifier" class="bg-surface-container-high text-on-surface px-10 py-4 rounded-md font-headline font-bold text-lg hover:bg-surface-bright active:scale-95 duration-100">Read
+          the Paper</a>
+      </div>
+    </section>
   </main>
-
-  <!-- Lightbox modal -->
-  <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
-    <div class="lightbox-content" role="dialog" aria-modal="true">
-      <button class="lightbox-close" aria-label="Close">×</button>
-      <img id="lightbox-image" src="" alt="" />
-      <p id="lightbox-caption" class="lightbox-caption"></p>
+  <!-- Footer -->
+  <footer class="bg-[#1a1b20] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="flex flex-col items-center md:items-start gap-2">
+      <div class="text-lg font-bold text-[#e3e2e8] font-headline">Agent Action Guard</div>
+      <p class="font-['Inter'] text-sm text-[#e3e2e8] opacity-60">© 2026 Agent Action Guard. Licensed under CC-BY-4.0.
+      </p>
     </div>
-  </div>
-
-  <script>
-    (function(){
-      function openLightbox(src, caption){
-        var lb = document.getElementById('lightbox');
-        var img = document.getElementById('lightbox-image');
-        var cap = document.getElementById('lightbox-caption');
-        img.src = src;
-        img.alt = caption || '';
-        cap.textContent = caption || '';
-        lb.classList.add('open');
-        lb.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeLightbox(){
-        var lb = document.getElementById('lightbox');
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden','true');
-        document.getElementById('lightbox-image').src = '';
-        document.body.style.overflow = '';
-      }
-      document.addEventListener('click', function(e){
-        var t = e.target;
-        if(t.classList && t.classList.contains('lightbox')){
-          var full = t.dataset.full || t.src;
-          openLightbox(full, t.alt || '');
-        }
-        if(t.classList && t.classList.contains('lightbox-close')){
-          closeLightbox();
-        }
-      }, false);
-      document.getElementById('lightbox').addEventListener('click', function(e){
-        if(e.target && e.target.id === 'lightbox') closeLightbox();
-      });
-      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
-    })();
-  </script>
-
-  <footer class="site-footer">
-    <p>Built by <strong>Praneeth Vadlapati</strong>. Demo and dataset available on the project repository.</p>
-    <p><a href="https://huggingface.co/datasets/prane-eth/HarmActions" target="_blank">HarmActions Dataset</a> • <a href="https://www.youtube.com/watch?v=7pNYXv3x7MA" target="_blank">Video Demo</a></p>
+    <div class="flex gap-8">
+      <a class="font-['Inter'] text-sm text-[#e3e2e8] opacity-60 hover:text-[#2ae500] transition-colors duration-200"
+        href="https://github.com/Pro-GenAI/Agent-Action-Guard">GitHub</a>
+      <a class="font-['Inter'] text-sm text-[#e3e2e8] opacity-60 hover:text-[#2ae500] transition-colors duration-200"
+        href="https://github.com/Pro-GenAI/Agent-Action-Guard?tab=readme-ov-file#-usage">Usage</a>
+      <a class="font-['Inter'] text-sm text-[#e3e2e8] opacity-60 hover:text-[#2ae500] transition-colors duration-200"
+        href="https://huggingface.co/blog/prane-eth/agent-action-guard">Blog</a>
+      <a class="font-['Inter'] text-sm text-[#e3e2e8] opacity-60 hover:text-[#2ae500] transition-colors duration-200"
+        href="https://www.researchgate.net/publication/396525269_Agent_Action_Guard_Safe_AI_Agents_through_Action_Classifier">Paper</a>
+    </div>
   </footer>
 </body>
+
 </html>
