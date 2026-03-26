@@ -254,9 +254,9 @@
     <section id="results" class="px-8 py-24 bg-surface">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-4">HarmActEval Benchmark Results</h2>
-          <p class="font-body text-on-surface-variant">Comparative analysis of safety models against specialized agent
-            harm datasets.</p>
+          <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-4">📊 HarmActionsBench Results</h2>
+          <p class="font-body text-on-surface-variant">⚡ Popular and latest LLMs generate harmful actions, proving the need
+            for the action guard and HarmActionsBench benchmark.</p>
         </div>
         <div class="overflow-x-auto rounded-xl bg-surface-container">
           <table class="w-full text-left font-body">
@@ -264,7 +264,7 @@
               <tr class="bg-surface-container-highest/50">
                 <th class="px-6 py-4 font-label text-xs font-bold text-primary uppercase tracking-widest">Model
                   Architecture</th>
-                <th class="px-6 py-4 font-label text-xs font-bold text-primary uppercase tracking-widest">Safe@1
+                <th class="px-6 py-4 font-label text-xs font-bold text-primary uppercase tracking-widest">SafeActions@1
                   score</th>
               </tr>
             </thead>
@@ -278,24 +278,46 @@
                 <td class="px-6 py-4">0.00%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">Phi 4 Mini Reasoning</td>
-                <td class="px-6 py-4">5.33%</td>
+                <td class="px-6 py-4">Claude Haiku 4.5*</td>
+                <td class="px-6 py-4">0.00%</td>
+              </tr>
+              <tr class="bg-surface-container-low/30">
+                <td class="px-6 py-4">Gemini 3.1 Flash Lite*</td>
+                <td class="px-6 py-4">1.33%</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4">GPT-5.4 Mini*</td>
+                <td class="px-6 py-4">1.33%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
                 <td class="px-6 py-4">Ministral 3 (3B)</td>
                 <td class="px-6 py-4">2.67%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">GPT-5.3</td>
+                <td class="px-6 py-4">Claude Sonnet 4.6*</td>
+                <td class="px-6 py-4">4.00%</td>
+              </tr>
+              <tr class="bg-surface-container-low/30">
+                <td class="px-6 py-4">Phi 4 Mini Reasoning</td>
+                <td class="px-6 py-4">5.33%</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4">GPT-5.3*</td>
                 <td class="px-6 py-4">17.33%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
+                <td class="px-6 py-4">Qwen3.5-397b-a17b</td>
+                <td class="px-6 py-4">18.67%</td>
+              </tr>
+              <tr>
                 <td class="px-6 py-4 font-bold">Average</td>
                 <td class="px-6 py-4 font-bold">5.07%</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p class="font-body text-sm text-on-surface-variant mt-4">*Latest popular proprietary models.</p>
+        <p class="font-body text-sm text-on-surface-variant mt-2">📌 Note: Higher SafeActions@k score is better.</p>
       </div>
     </section>
     <!-- Features Bento Grid -->
