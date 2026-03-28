@@ -250,13 +250,12 @@
       </div>
     </section>
 
-    <!-- HarmActEval Benchmark Results -->
+    <!-- HarmActionsEval Benchmark Results -->
     <section id="results" class="px-8 py-24 bg-surface">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-4">📊 HarmActionsEval Results</h2>
-          <p class="font-body text-on-surface-variant">⚡ Popular and latest LLMs generate harmful actions, proving the need
-            for the action guard and HarmActionsEval benchmark.</p>
+          <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-4">❓ Why Action Guard?</h2>
+          <p class="font-body text-on-surface-variant max-w-4xl mx-auto">HarmActionsEval benchmark proved that AI agents with harmful tools will use them - even today's <span class="font-bold text-on-surface">most capable</span> LLMs. 80% of the LLMs tested executed actions at the first attempt for over 95% of the harmful prompts.</p>
         </div>
         <div class="overflow-x-auto rounded-xl bg-surface-container">
           <table class="w-full text-left font-body">
@@ -270,53 +269,52 @@
             </thead>
             <tbody class="divide-y divide-outline-variant/10">
               <tr>
-                <td class="px-6 py-4 font-bold">Phi 4 Mini Instruct</td>
+                <td class="px-6 py-4">Claude Haiku 4.5</td>
                 <td class="px-6 py-4">0.00%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
+                <td class="px-6 py-4">Phi 4 Mini Instruct</td>
+                <td class="px-6 py-4">0.00%</td>
+              </tr>
+              <tr>
                 <td class="px-6 py-4">Granite 4-H-Tiny</td>
                 <td class="px-6 py-4">0.00%</td>
               </tr>
-              <tr>
-                <td class="px-6 py-4">Claude Haiku 4.5*</td>
-                <td class="px-6 py-4">0.00%</td>
-              </tr>
               <tr class="bg-surface-container-low/30">
-                <td class="px-6 py-4">Gemini 3.1 Flash Lite*</td>
-                <td class="px-6 py-4">1.33%</td>
+                <td class="px-6 py-4">GPT-5.4 Mini</td>
+                <td class="px-6 py-4">0.71%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">GPT-5.4 Mini*</td>
-                <td class="px-6 py-4">1.33%</td>
+                <td class="px-6 py-4">Gemini 3.1 Flash Lite</td>
+                <td class="px-6 py-4">0.71%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
                 <td class="px-6 py-4">Ministral 3 (3B)</td>
-                <td class="px-6 py-4">2.67%</td>
+                <td class="px-6 py-4">2.13%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">Claude Sonnet 4.6*</td>
-                <td class="px-6 py-4">4.00%</td>
+                <td class="px-6 py-4">Claude Sonnet 4.6</td>
+                <td class="px-6 py-4">2.84%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
                 <td class="px-6 py-4">Phi 4 Mini Reasoning</td>
-                <td class="px-6 py-4">5.33%</td>
+                <td class="px-6 py-4">2.84%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">GPT-5.3*</td>
-                <td class="px-6 py-4">17.33%</td>
+                <td class="px-6 py-4">GPT-5.3</td>
+                <td class="px-6 py-4">12.77%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
                 <td class="px-6 py-4">Qwen3.5-397b-a17b</td>
-                <td class="px-6 py-4">18.67%</td>
+                <td class="px-6 py-4">23.40%</td>
               </tr>
               <tr>
                 <td class="px-6 py-4 font-bold">Average</td>
-                <td class="px-6 py-4 font-bold">5.07%</td>
+                <td class="px-6 py-4 font-bold">4.54%</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="font-body text-sm text-on-surface-variant mt-4">*Latest popular proprietary models.</p>
         <p class="font-body text-sm text-on-surface-variant mt-2">📌 Note: Higher SafeActions@k score is better.</p>
       </div>
     </section>
