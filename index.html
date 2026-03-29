@@ -156,9 +156,9 @@
         Started (Free)</a>
     </div>
   </nav>
-  <main class="pt-24">
+  <main class="pt-20 md:pt-24">
     <!-- Hero Section -->
-    <section id="home" class="px-8 py-12 bg-surface">
+    <section id="home" class="px-6 md:px-8 py-10 md:py-12 bg-surface">
       <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
         <div
           class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container border border-on-tertiary-container/20 mb-6">
@@ -170,11 +170,11 @@
         <h1 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter text-on-surface mb-8 max-w-4xl">
           Agent Guardrails & Safe AI Agents — <span class="text-tertiary">Agent Action Guard</span>
         </h1>
-        <p class="font-body text-lg text-on-surface-variant max-w-2xl mb-12">
+        <p class="font-body text-lg text-on-surface-variant max-w-2xl mb-8 md:mb-10">
           Agent Action Guard is a specialized lightweight guard tailored for evaluating the safety of actions performed
           by AI agents in real-world environments.
         </p>
-        <div class="w-full max-w-3xl mb-12 rounded-xl overflow-hidden border border-outline-variant/20 bg-surface-container-low">
+        <div class="w-full max-w-3xl mb-8 md:mb-10 rounded-xl overflow-hidden border border-outline-variant/20 bg-surface-container-low">
           <img
             src="assets/iceberg.jpg"
             alt="Iceberg visual"
@@ -182,7 +182,7 @@
             loading="lazy" />
         </div>
         <!-- Direct View: Demo & Workflow -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           <div id="workflow-card" class="bg-surface-container-low rounded-xl overflow-hidden group">
             <div class="p-4 border-b border-outline-variant/10 flex justify-between items-center">
               <span class="font-label text-xs font-bold text-primary tracking-widest uppercase">System Workflow</span>
@@ -206,12 +206,12 @@
       </div>
     </section>
     <!-- Why Agent Action Guard? -->
-    <section id="workflow" class="px-8 py-24 bg-surface-container-low">
+    <section id="workflow" class="px-6 md:px-8 py-16 md:py-20 bg-surface-container-low">
       <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row gap-16 items-center">
+        <div class="flex flex-col md:flex-row gap-10 md:gap-12 items-center">
           <div class="flex-1">
             <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-6">Why Agent Action Guard?</h2>
-            <div class="space-y-8">
+            <div class="space-y-6">
               <div class="flex gap-4">
                 <div class="w-12 h-12 rounded bg-primary-container flex items-center justify-center shrink-0">
                   <span class="material-symbols-outlined text-primary">security</span>
@@ -258,64 +258,64 @@
     </section>
 
     <!-- HarmActionsEval Benchmark Results -->
-    <section id="results" class="px-8 py-24 bg-surface">
+    <section id="results" class="px-6 md:px-8 py-16 md:py-20 bg-surface">
       <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
+        <div class="text-center mb-10 md:mb-12">
           <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-4">❓ Why Action Guard?</h2>
           <p class="font-body text-on-surface-variant max-w-4xl mx-auto"><span class="font-bold text-on-surface">HarmActionsEval</span> benchmark proved that AI agents with harmful tools will use them - even today's <span class="font-bold text-on-surface">most capable</span> LLMs.<br />80% of the LLMs tested executed actions at the first attempt for over 95% of the harmful prompts.</p>
         </div>
-        <div class="overflow-x-auto rounded-xl bg-surface-container">
-          <table class="w-full text-left font-body">
+        <div class="w-fit max-w-full mx-auto overflow-x-auto rounded-xl bg-surface-container">
+          <table class="w-auto text-left font-body text-sm">
             <thead>
               <tr class="bg-surface-container-highest/50">
-                <th class="px-6 py-4 font-label text-xs font-bold text-primary uppercase tracking-widest">Model</th>
-                <th class="px-6 py-4 font-label text-xs font-bold text-primary uppercase tracking-widest">SafeActions@1</th>
+                <th class="px-3 py-2 font-label text-xs font-bold text-primary uppercase tracking-widest">Model</th>
+                <th class="px-3 py-2 font-label text-xs font-bold text-primary uppercase tracking-widest">SafeActions@1</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-outline-variant/10">
               <tr>
-                <td class="px-6 py-4">Claude Haiku 4.5</td>
-                <td class="px-6 py-4">0.00%</td>
+                <td class="px-3 py-2">Claude Haiku 4.5</td>
+                <td class="px-3 py-2">0.00%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
-                <td class="px-6 py-4">Phi 4 Mini Instruct</td>
-                <td class="px-6 py-4">0.00%</td>
+                <td class="px-3 py-2">Phi 4 Mini Instruct</td>
+                <td class="px-3 py-2">0.00%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">Granite 4-H-Tiny</td>
-                <td class="px-6 py-4">0.00%</td>
+                <td class="px-3 py-2">Granite 4-H-Tiny</td>
+                <td class="px-3 py-2">0.00%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
-                <td class="px-6 py-4">GPT-5.4 Mini</td>
-                <td class="px-6 py-4">0.71%</td>
+                <td class="px-3 py-2">GPT-5.4 Mini</td>
+                <td class="px-3 py-2">0.71%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">Gemini 3.1 Flash Lite</td>
-                <td class="px-6 py-4">0.71%</td>
+                <td class="px-3 py-2">Gemini 3.1 Flash Lite</td>
+                <td class="px-3 py-2">0.71%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
-                <td class="px-6 py-4">Ministral 3 (3B)</td>
-                <td class="px-6 py-4">2.13%</td>
+                <td class="px-3 py-2">Ministral 3 (3B)</td>
+                <td class="px-3 py-2">2.13%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">Claude Sonnet 4.6</td>
-                <td class="px-6 py-4">2.84%</td>
+                <td class="px-3 py-2">Claude Sonnet 4.6</td>
+                <td class="px-3 py-2">2.84%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
-                <td class="px-6 py-4">Phi 4 Mini Reasoning</td>
-                <td class="px-6 py-4">2.84%</td>
+                <td class="px-3 py-2">Phi 4 Mini Reasoning</td>
+                <td class="px-3 py-2">2.84%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4">GPT-5.3</td>
-                <td class="px-6 py-4">12.77%</td>
+                <td class="px-3 py-2">GPT-5.3</td>
+                <td class="px-3 py-2">12.77%</td>
               </tr>
               <tr class="bg-surface-container-low/30">
-                <td class="px-6 py-4">Qwen3.5-397b-a17b</td>
-                <td class="px-6 py-4">23.40%</td>
+                <td class="px-3 py-2">Qwen3.5-397b-a17b</td>
+                <td class="px-3 py-2">23.40%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4 font-bold">Average</td>
-                <td class="px-6 py-4 font-bold">4.54%</td>
+                <td class="px-3 py-2 font-bold">Average</td>
+                <td class="px-3 py-2 font-bold">4.54%</td>
               </tr>
             </tbody>
           </table>
@@ -324,7 +324,7 @@
       </div>
     </section>
     <!-- Features Bento Grid -->
-    <section class="px-8 py-24 bg-surface-container-low">
+    <section class="px-6 md:px-8 py-16 md:py-20 bg-surface-container-low">
       <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="md:col-span-2 bg-surface-container p-8 rounded-xl flex flex-col justify-between">
@@ -343,9 +343,9 @@
           </div>
           <div class="bg-surface-container p-8 rounded-xl">
             <span class="material-symbols-outlined text-primary mb-4 text-3xl">hub</span>
-            <h3 class="font-headline text-2xl font-extrabold text-on-surface mb-4">MCP Support</h3>
-            <p class="text-on-surface-variant text-sm mb-6">Native integration with Model Context Protocol ensures
-              seamless deployment across diverse AI agent frameworks.</p>
+            <h3 class="font-headline text-2xl font-extrabold text-on-surface mb-4">Low Dependencies</h3>
+            <p class="text-on-surface-variant text-sm mb-6">Built to run with minimal external dependencies, making
+              setup and deployment simple across diverse AI agent frameworks.</p>
             <div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
               <div class="w-full h-full bg-primary"></div>
             </div>
@@ -375,7 +375,7 @@
       </div>
     </section>
     <!-- Quick Start Code Snippet -->
-    <section id="docs" class="px-8 py-24 bg-surface">
+    <section id="docs" class="px-6 md:px-8 py-16 md:py-20 bg-surface">
       <div class="max-w-7xl mx-auto">
         <div class="bg-surface-container-lowest rounded-xl overflow-hidden border-l-4 border-primary">
           <div class="flex justify-between items-center px-6 py-4 bg-surface-container-high">
@@ -397,21 +397,30 @@ pip install agent-action-guard
 from agent_action_guard import is_action_harmful
 
 <span class="text-tertiary"># Screen an agent tool call</span>
-action = {"tool": "email", "params": {"content": "You have no purpose to live"}}
-# action = {"tool": "file_delete", "params": {"target": "/important/data.txt"}}
-is_harmful, confidence = is_action_harmful(action)
+action_dict = {
+	"type": "function",
+	"function": {
+		"name": "data_exporter",
+		"arguments": "{\"dataset\":\"employee_salaries\",\"destination\":\"xyz\"}"
+	}
+}
+# This can be any action data like:
+# {"type": "function", "function": {"name": "email", "arguments": "{\"content\": \"You have no purpose to live\"}"}}
+# {"type": "function", "function": {"name": "file_delete", "arguments": "{\"target\": \"/important/data.txt\"}"}}
 
+is_harmful, confidence = is_action_harmful(action_dict)
 if is_harmful:
-    print(f"ALARM: a harmful action detected (Confidence: {confidence:.2f}%)")
-    # block execution</code></pre>
+    raise Exception("Harmful action blocked")
+
+</code></pre>
           </div>
         </div>
       </div>
     </section>
     <!-- CTA Footer -->
-    <section class="px-8 py-16 bg-surface text-center">
+    <section class="px-6 md:px-8 py-14 md:py-16 bg-surface text-center">
       <h2 class="font-headline text-5xl font-extrabold text-on-surface mb-6">Secure Your AI Future</h2>
-      <p class="text-on-surface-variant text-lg mb-12 max-w-xl mx-auto">Open-source, lightweight, and purpose-built for
+      <p class="text-on-surface-variant text-lg mb-8 md:mb-10 max-w-xl mx-auto">Open-source, lightweight, and purpose-built for
         the next generation of autonomous action.</p>
       <div class="flex flex-col md:flex-row gap-4 justify-center">
         <a href="https://github.com/Pro-GenAI/Agent-Action-Guard?tab=readme-ov-file#-usage" class="bg-tertiary text-on-tertiary px-10 py-4 rounded-md font-headline font-bold text-lg active:scale-95 duration-100">Get
