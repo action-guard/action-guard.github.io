@@ -996,6 +996,176 @@
           </table>
         </div>
         <p class="font-body text-sm text-on-surface-variant mt-2">📌 Note: Higher SafeActions@k score is better.</p>
+
+        <div class="mt-16 pt-12 border-t border-outline-variant/20">
+          <div class="text-center mb-10">
+            <p class="font-label text-xs font-bold uppercase tracking-[0.22em] text-tertiary mb-3">Classifier benchmark</p>
+            <h3 class="font-headline text-3xl md:text-4xl font-extrabold text-on-surface mb-4">
+              Agent Action Guard vs. Laya and LLM
+            </h3>
+            <p class="font-body text-on-surface-variant max-w-4xl mx-auto">
+              The comparison evaluates Agent Action Guard, <a class="text-primary hover:text-tertiary transition-colors"
+                href="https://github.com/receptron/laya" target="_blank" rel="noopener noreferrer">Laya</a>, and an
+              OpenAI LLM classifier on the same HarmActions rows. The two local systems run on CPU, with warm-up and
+              model-loading time excluded from per-action latency.
+            </p>
+          </div>
+
+          <div class="overflow-x-auto rounded-xl bg-surface-container border border-outline-variant/20 mb-8">
+            <table class="w-full min-w-[760px] text-left font-body text-sm">
+              <thead>
+                <tr class="bg-surface-container-highest/60">
+                  <th class="px-4 py-3 font-label text-xs font-bold text-primary uppercase tracking-widest">Model</th>
+                  <th class="px-4 py-3 font-label text-xs font-bold text-primary uppercase tracking-widest">HarmActions</th>
+                  <th class="px-4 py-3 font-label text-xs font-bold text-primary uppercase tracking-widest">Accuracy</th>
+                  <th class="px-4 py-3 font-label text-xs font-bold text-primary uppercase tracking-widest">Precision</th>
+                  <th class="px-4 py-3 font-label text-xs font-bold text-primary uppercase tracking-widest">Recall</th>
+                  <th class="px-4 py-3 font-label text-xs font-bold text-primary uppercase tracking-widest">F1</th>
+                  <th class="px-4 py-3 font-label text-xs font-bold text-primary uppercase tracking-widest">ms/action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant/10">
+                <tr class="bg-tertiary/5">
+                  <td class="px-4 py-3 font-bold text-on-surface">Agent Action Guard</td>
+                  <td class="px-4 py-3 font-bold text-tertiary">97.87%</td>
+                  <td class="px-4 py-3 font-bold text-tertiary">97.87%</td>
+                  <td class="px-4 py-3 font-bold text-tertiary">100.00%</td>
+                  <td class="px-4 py-3 font-bold text-tertiary">97.87%</td>
+                  <td class="px-4 py-3 font-bold text-tertiary">98.92%</td>
+                  <td class="px-4 py-3 font-bold text-tertiary">19.66</td>
+                </tr>
+                <tr class="bg-surface-container-low/30">
+                  <td class="px-4 py-3">gpt-5.6-luna</td>
+                  <td class="px-4 py-3">90.07%</td>
+                  <td class="px-4 py-3">90.07%</td>
+                  <td class="px-4 py-3">100.00%</td>
+                  <td class="px-4 py-3">90.07%</td>
+                  <td class="px-4 py-3">94.78%</td>
+                  <td class="px-4 py-3">3381.72</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3">Laya</td>
+                  <td class="px-4 py-3">51.06%</td>
+                  <td class="px-4 py-3">51.06%</td>
+                  <td class="px-4 py-3">100.00%</td>
+                  <td class="px-4 py-3">51.06%</td>
+                  <td class="px-4 py-3">67.61%</td>
+                  <td class="px-4 py-3">815.86</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-surface-container rounded-xl border border-outline-variant/20 p-6 md:p-8">
+              <div class="flex flex-wrap items-end justify-between gap-3 mb-7">
+                <div>
+                  <h4 class="font-headline text-xl font-extrabold text-on-surface">Classification quality</h4>
+                  <p class="font-body text-sm text-on-surface-variant mt-1">Accuracy and F1 · higher is better</p>
+                </div>
+                <span class="font-label text-[11px] uppercase tracking-widest text-outline">0–100%</span>
+              </div>
+
+              <div class="space-y-7">
+                <div>
+                  <div class="flex justify-between gap-4 mb-2">
+                    <span class="font-label text-sm font-bold text-on-surface">Agent Action Guard</span>
+                    <span class="font-label text-xs text-tertiary">97.87% accuracy · 98.92% F1</span>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="h-3 rounded-full bg-surface-container-highest overflow-hidden">
+                      <div class="h-full rounded-full bg-tertiary" style="width:97.87%"></div>
+                    </div>
+                    <div class="h-3 rounded-full bg-surface-container-highest overflow-hidden">
+                      <div class="h-full rounded-full bg-tertiary-fixed-dim/70" style="width:98.92%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between gap-4 mb-2">
+                    <span class="font-label text-sm font-bold text-on-surface">gpt-5.6-luna</span>
+                    <span class="font-label text-xs text-primary">90.07% accuracy · 94.78% F1</span>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="h-3 rounded-full bg-surface-container-highest overflow-hidden">
+                      <div class="h-full rounded-full bg-primary" style="width:90.07%"></div>
+                    </div>
+                    <div class="h-3 rounded-full bg-surface-container-highest overflow-hidden">
+                      <div class="h-full rounded-full bg-secondary" style="width:94.78%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between gap-4 mb-2">
+                    <span class="font-label text-sm font-bold text-on-surface">Laya</span>
+                    <span class="font-label text-xs text-on-surface-variant">51.06% accuracy · 67.61% F1</span>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="h-3 rounded-full bg-surface-container-highest overflow-hidden">
+                      <div class="h-full rounded-full bg-outline" style="width:51.06%"></div>
+                    </div>
+                    <div class="h-3 rounded-full bg-surface-container-highest overflow-hidden">
+                      <div class="h-full rounded-full bg-on-surface-variant" style="width:67.61%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex gap-5 mt-7 pt-5 border-t border-outline-variant/15 font-label text-[11px] uppercase tracking-wider text-outline">
+                <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-tertiary"></span>Accuracy</span>
+                <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim/70"></span>F1</span>
+              </div>
+            </div>
+
+            <div class="bg-surface-container rounded-xl border border-outline-variant/20 p-6 md:p-8">
+              <div class="flex flex-wrap items-end justify-between gap-3 mb-7">
+                <div>
+                  <h4 class="font-headline text-xl font-extrabold text-on-surface">Per-action latency</h4>
+                  <p class="font-body text-sm text-on-surface-variant mt-1">Linear scale · lower is better</p>
+                </div>
+                <span class="font-label text-[11px] uppercase tracking-widest text-outline">0–3,500 ms</span>
+              </div>
+
+              <div class="space-y-7">
+                <div>
+                  <div class="flex justify-between gap-4 mb-2">
+                    <span class="font-label text-sm font-bold text-on-surface">Agent Action Guard</span>
+                    <span class="font-label text-xs font-bold text-tertiary">19.66 ms</span>
+                  </div>
+                  <div class="h-4 rounded-full bg-surface-container-highest overflow-hidden">
+                    <div class="h-full rounded-full bg-tertiary" style="width:max(0.56%, 4px)"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between gap-4 mb-2">
+                    <span class="font-label text-sm font-bold text-on-surface">gpt-5.6-luna</span>
+                    <span class="font-label text-xs text-primary">3,381.72 ms</span>
+                  </div>
+                  <div class="h-4 rounded-full bg-surface-container-highest overflow-hidden">
+                    <div class="h-full rounded-full bg-primary" style="width:96.62%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between gap-4 mb-2">
+                    <span class="font-label text-sm font-bold text-on-surface">Laya</span>
+                    <span class="font-label text-xs text-on-surface-variant">815.86 ms</span>
+                  </div>
+                  <div class="h-4 rounded-full bg-surface-container-highest overflow-hidden">
+                    <div class="h-full rounded-full bg-outline" style="width:23.31%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="font-body text-xs text-outline mt-7 pt-5 border-t border-outline-variant/15">
+                Local-system timings use CPU execution. Warm-up and model-loading time are excluded.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <!-- Features Bento Grid -->
