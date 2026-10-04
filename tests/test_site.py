@@ -114,6 +114,27 @@ class SiteSeoTests(unittest.TestCase):
             },
         )
 
+    def test_code_examples_use_language_aware_syntax_highlighting(self) -> None:
+        home = HOME.read_text(encoding="utf-8")
+        docs = DOCS.read_text(encoding="utf-8")
+        highlight_src = (
+            "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"
+        )
+
+        for name, page in (("home", home), ("docs", docs)):
+            with self.subTest(page=name):
+                self.assertIn(highlight_src, page)
+                self.assertIn(".hljs-keyword", page)
+                self.assertIn(".hljs-string", page)
+
+        self.assertIn('<code class="language-python">', home)
+        self.assertIn('<code class="language-javascript">', home)
+        self.assertIn('<code class="language-python">', docs)
+        self.assertIn('<code class="language-javascript">', docs)
+        self.assertIn('<code class="language-bash">', docs)
+        self.assertIn("highlightElement(code)", home)
+        self.assertIn("highlightAll()", docs)
+
 
 if __name__ == "__main__":
     unittest.main()

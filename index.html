@@ -54,6 +54,7 @@
   }
   </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
@@ -614,6 +615,14 @@
     }
 
     .code-window { position: relative; box-shadow: 0 25px 70px rgba(0, 0, 0, .28); }
+    pre code.hljs { display: block; overflow-x: visible; padding: 0; background: transparent; color: #bbc6e2; }
+    .hljs-comment, .hljs-quote { color: #7f8aa3; font-style: italic; }
+    .hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-name { color: #ff7ab2; }
+    .hljs-string, .hljs-doctag, .hljs-regexp, .hljs-template-tag, .hljs-template-variable { color: #f7c76f; }
+    .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-symbol, .hljs-bullet { color: #d6a6ff; }
+    .hljs-title, .hljs-title.function_, .hljs-title.class_, .hljs-function .hljs-title { color: #7ee787; }
+    .hljs-attr, .hljs-attribute, .hljs-variable, .hljs-property, .hljs-params { color: #79c0ff; }
+    .hljs-meta, .hljs-meta .hljs-keyword { color: #ffa657; }
     .code-window::before {
       content: "";
       position: absolute;
@@ -1322,13 +1331,13 @@
             </button>
           </div>
           <div class="p-8 font-label text-sm leading-relaxed text-[#bbc6e2]">
-            <pre><code><span class="text-tertiary"># Install Agent Action Guard</span>
+            <pre><code class="language-python"># Install Agent Action Guard
 pip install agent-action-guard
 
-<span class="text-tertiary"># Initialize the safety protocol</span>
+# Initialize the safety protocol
 from agent_action_guard import is_action_harmful
 
-<span class="text-tertiary"># Screen an agent tool call</span>
+# Screen an agent tool call
 action_dict = {
 	"type": "function",
 	"function": {
@@ -1357,12 +1366,12 @@ if is_harmful:
                 <span class="material-symbols-outlined text-tertiary text-sm">javascript</span>
               </div>
               <div class="p-5 font-label text-sm leading-relaxed text-[#bbc6e2] overflow-x-auto">
-                <pre><code><span class="text-tertiary"># Install Agent Action Guard</span>
+                <pre><code class="language-javascript">// Install Agent Action Guard
 npm i agent-action-guard
-<span class="text-tertiary"># or use pnpm</span>
+// or use pnpm
 pnpm install agent-action-guard
 
-<span class="text-tertiary"># Initialize the safety protocol</span>
+// Initialize the safety protocol
 import { isActionHarmful } from 'agent-action-guard';
 
 async function main() {
@@ -1616,6 +1625,11 @@ main()
             console.warn('Copy failed', error);
           }
         });
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        if (!window.hljs) return;
+        document.querySelectorAll("#docs pre code").forEach((code) => window.hljs.highlightElement(code));
       });
 
       // Keep navigation state synced with the section currently in view.

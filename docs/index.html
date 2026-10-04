@@ -84,6 +84,7 @@
   }
   </script>
 
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <style>
     :root {
       color-scheme: dark;
@@ -132,6 +133,14 @@
       color: var(--code);
       line-height: 1.55;
     }
+    pre code.hljs { display: block; overflow-x: visible; padding: 0; background: transparent; color: var(--code); }
+    .hljs-comment, .hljs-quote { color: #7f8aa3; font-style: italic; }
+    .hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-name { color: #ff7ab2; }
+    .hljs-string, .hljs-doctag, .hljs-regexp, .hljs-template-tag, .hljs-template-variable { color: #f7c76f; }
+    .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-symbol, .hljs-bullet { color: #d6a6ff; }
+    .hljs-title, .hljs-title.function_, .hljs-title.class_, .hljs-function .hljs-title { color: #7ee787; }
+    .hljs-attr, .hljs-attribute, .hljs-variable, .hljs-property, .hljs-params { color: #79c0ff; }
+    .hljs-meta, .hljs-meta .hljs-keyword { color: #ffa657; }
 
     .topbar {
       position: sticky;
@@ -292,14 +301,14 @@
           <div class="cards">
             <div class="card">
               <h3>Python</h3>
-              <pre><code>pip install agent-action-guard
+              <pre><code class="language-bash">pip install agent-action-guard
 # or
 uv add agent-action-guard</code></pre>
               <p>Supported package range: Python 3.8 through 3.14.</p>
             </div>
             <div class="card">
               <h3>JavaScript / Node.js</h3>
-              <pre><code>npm install agent-action-guard
+              <pre><code class="language-bash">npm install agent-action-guard
 # or
 pnpm install agent-action-guard</code></pre>
               <p>The package exposes asynchronous action-screening helpers for Node.js agent loops.</p>
@@ -314,7 +323,7 @@ pnpm install agent-action-guard</code></pre>
         <section id="python">
           <h2>Python API</h2>
           <h3>Screen an action directly</h3>
-          <pre><code>from agent_action_guard import is_action_harmful
+          <pre><code class="language-python">from agent_action_guard import is_action_harmful
 
 action = {
     "type": "function",
@@ -333,7 +342,7 @@ if is_harmful:
     raise RuntimeError(f"Action blocked ({confidence:.2f})")</code></pre>
 
           <h3>Guard a Python function</h3>
-          <pre><code>from agent_action_guard import action_guarded
+          <pre><code class="language-python">from agent_action_guard import action_guarded
 
 @action_guarded(conf_threshold=0.8)
 def delete_user(user_id: str):
@@ -344,7 +353,7 @@ def delete_user(user_id: str):
         <section id="javascript">
           <h2>JavaScript API</h2>
           <p>The Node.js runtime exposes <code>isActionHarmful()</code>, <code>ensureActionSafety()</code>, and <code>actionGuarded()</code>.</p>
-          <pre><code>import {
+          <pre><code class="language-javascript">import {
   ensureActionSafety,
   isActionHarmful,
 } from "agent-action-guard";
@@ -386,16 +395,16 @@ await ensureActionSafety(action, { raiseException: true });</code></pre>
           </table>
 
           <h3>Explicit ONNX source</h3>
-          <pre><code>export AAG_EMBED_ONNX="/models/all-MiniLM-L6-v2/model.onnx"
+          <pre><code class="language-bash">export AAG_EMBED_ONNX="/models/all-MiniLM-L6-v2/model.onnx"
 python app.py</code></pre>
 
           <h3>Explicit GGUF source</h3>
-          <pre><code>pip install llama-cpp-python
+          <pre><code class="language-bash">pip install llama-cpp-python
 export AAG_EMBED_GGUF="/models/all-MiniLM-L6-v2/model.gguf"
 python app.py</code></pre>
 
           <h3>OpenAI-compatible embedding API</h3>
-          <pre><code>export EMBED_MODEL_NAME="sentence-transformers/all-MiniLM-L6-v2"
+          <pre><code class="language-bash">export EMBED_MODEL_NAME="sentence-transformers/all-MiniLM-L6-v2"
 export EMBEDDING_BASE_URL="http://localhost:1234/v1"
 export EMBEDDING_API_KEY="..."
 python app.py</code></pre>
@@ -415,7 +424,7 @@ python app.py</code></pre>
           </ul>
 
           <h3>OpenAI Agents SDK tool</h3>
-          <pre><code>from agent_action_guard.openai_agents import guard_function
+          <pre><code class="language-python">from agent_action_guard.openai_agents import guard_function
 from agents import function_tool
 
 @function_tool
@@ -428,7 +437,7 @@ def send_email(to: str, subject: str, body: str) -> str:
         <section id="hooks">
           <h2>Coding-agent pre-tool-use hooks</h2>
           <p>Install project-level hooks so supported coding-agent harnesses screen a proposed tool call before execution.</p>
-          <pre><code>agent-action-guard hooks install --target codex
+          <pre><code class="language-bash">agent-action-guard hooks install --target codex
 agent-action-guard hooks install --target claude-code
 agent-action-guard hooks install --target cursor
 agent-action-guard hooks install --target kiro</code></pre>
@@ -439,17 +448,17 @@ agent-action-guard hooks install --target kiro</code></pre>
           <h2>CLI and HTTP API</h2>
           <h3>Classify from the command line</h3>
           <p>The installed <code>agent-action-guard</code> command accepts a direct JSON action or a file containing JSON-array or JSONL actions.</p>
-          <pre><code>agent-action-guard '{"type":"function","function":{"name":"send_email","arguments":{"to":"user@example.com"}}}'</code></pre>
+          <pre><code class="language-bash">agent-action-guard '{"type":"function","function":{"name":"send_email","arguments":{"to":"user@example.com"}}}'</code></pre>
 
           <h3>Run the local HTTP service</h3>
-          <pre><code>agent-action-guard serve</code></pre>
+          <pre><code class="language-bash">agent-action-guard serve</code></pre>
           <p>The service exposes <code>GET /health</code> and <code>POST /v1/classify</code>. The default bind address is <code>127.0.0.1:8000</code>, with host, port, and default batch-size configuration available through the CLI.</p>
         </section>
 
         <section id="evaluation">
           <h2>HarmActionsEval</h2>
           <p>Install the optional evaluation dependencies when you want to run the benchmark workflow rather than only the runtime classifier.</p>
-          <pre><code>pip install "agent-action-guard[harmactionseval]"
+          <pre><code class="language-bash">pip install "agent-action-guard[harmactionseval]"
 agent-action-guard harmactionseval --k 3</code></pre>
           <p>The evaluation CLI supports controls such as <code>--k</code>, <code>--offset</code>, <code>--limit</code>, <code>--cache-path</code>, <code>--output</code>, and <code>--log-level</code>. Provider credentials and <code>OPENAI_MODEL</code> are required for the LLM-backed evaluation path.</p>
         </section>
@@ -474,5 +483,10 @@ agent-action-guard harmactionseval --k 3</code></pre>
   <footer>
     <p>Agent Action Guard documentation · <a href="/">Website</a> · <a href="https://github.com/Pro-GenAI/Agent-Action-Guard">GitHub</a></p>
   </footer>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.hljs) window.hljs.highlightAll();
+    });
+  </script>
 </body>
 </html>
