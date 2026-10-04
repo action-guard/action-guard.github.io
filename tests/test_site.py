@@ -179,6 +179,47 @@ class SiteSeoTests(unittest.TestCase):
         ]
         self.assertTrue(all(len(body) < 2500 for body in inline))
 
+
+    def test_supported_hook_targets_are_documented(self) -> None:
+        home = HOME.read_text(encoding="utf-8")
+        docs = DOCS.read_text(encoding="utf-8")
+        llms = (SITE_ROOT / "llms.txt").read_text(encoding="utf-8")
+
+        targets = {
+            "codex": "Codex",
+            "claude-code": "Claude Code",
+            "cursor": "Cursor",
+            "kiro": "Kiro",
+            "opencode": "OpenCode",
+            "agy": "Antigravity CLI",
+            "copilot": "GitHub Copilot CLI",
+            "openclaw": "OpenClaw",
+            "hermes": "Hermes Agent",
+        }
+
+        for target, label in targets.items():
+            with self.subTest(target=target):
+                self.assertIn(label, home)
+                self.assertIn(
+                    f"agent-action-guard hooks install --target {target}",
+                    docs,
+                )
+                self.assertIn(f"`{target}`", llms)
+
+        self.assertIn(
+            "openclaw plugins enable agent-action-guard",
+            docs,
+        )
+        self.assertIn("HERMES_ENABLE_PROJECT_PLUGINS=1", docs)
+        self.assertIn(
+            ".openclaw/extensions/agent-action-guard/",
+            docs,
+        )
+        self.assertIn(
+            ".hermes/plugins/agent-action-guard/",
+            docs,
+        )
+
     def test_homepage_benchmark_numbers_match_readme(self) -> None:
         readme = (SITE_ROOT.parents[1] / "README.md").read_text(encoding="utf-8")
         home = HOME.read_text(encoding="utf-8")
